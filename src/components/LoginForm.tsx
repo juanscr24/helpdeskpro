@@ -8,7 +8,7 @@ const LoginForm = () => {
     return (
         <form onSubmit={onSubmit} className="space-y-4">
             {error && (
-                <div className="p-3 mb-4 text-sm rounded-lg bg-red-500/20 text-white border border-red-400/30 backdrop-blur-sm flex items-center gap-2">
+                <div className="p-3 mb-4 text-sm rounded-lg bg-red-50 text-red-800 border border-red-200 flex items-center gap-2">
                     <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                     </svg>
@@ -17,18 +17,18 @@ const LoginForm = () => {
             )}
 
             <div>
-                <label className="block text-sm font-medium text-white/90 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                     Email
                 </label>
-                <input 
-                    type="email" 
+                <input
+                    type="email"
                     placeholder="tu@email.com"
                     {...register("email", { required: "El email es requerido" })}
-                    className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 focus:outline-none backdrop-blur-sm transition-all"
+                    className="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none transition-all"
                     disabled={isLoading}
                 />
                 {errors.email && (
-                    <span className="text-red-300 text-sm mt-1 flex items-center gap-1">
+                    <span className="text-red-600 text-sm mt-1 flex items-center gap-1">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
@@ -38,18 +38,18 @@ const LoginForm = () => {
             </div>
 
             <div>
-                <label className="block text-sm font-medium text-white/90 mb-2">
+                <label className="block text-sm font-medium text-gray-700 mb-2">
                     Contraseña
                 </label>
-                <input 
-                    type="password" 
+                <input
+                    type="password"
                     placeholder="••••••••"
                     {...register("password", { required: "La contraseña es requerida" })}
-                    className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-purple-400 focus:ring-2 focus:ring-purple-400/50 focus:outline-none backdrop-blur-sm transition-all"
+                    className="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none transition-all"
                     disabled={isLoading}
                 />
                 {errors.password && (
-                    <span className="text-red-300 text-sm mt-1 flex items-center gap-1">
+                    <span className="text-red-600 text-sm mt-1 flex items-center gap-1">
                         <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                         </svg>
@@ -58,8 +58,8 @@ const LoginForm = () => {
                 )}
             </div>
 
-            <button 
-                className="w-full bg-gradient-primary hover:opacity-90 text-white p-3 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 mt-6" 
+            <button
+                className="w-full bg-primary-900 hover:bg-primary-800 text-white p-3 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm mt-6"
                 type="submit"
                 disabled={isLoading}
             >
@@ -75,6 +75,14 @@ const LoginForm = () => {
                     'Iniciar Sesión'
                 )}
             </button>
+            <div className="text-center mt-4">
+                <p className="text-gray-600 text-sm">
+                    ¿No tienes cuenta?{' '}
+                    <a href="/register" className="text-primary-900 hover:text-primary-700 font-medium">
+                        Registrate
+                    </a>
+                </p>
+            </div>
         </form>
     );
 };

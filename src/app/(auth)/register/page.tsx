@@ -4,17 +4,17 @@ import RegisterForm from "@src/components/RegisterForm";
 
 const RegisterPage = () => {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gradient-hero relative overflow-hidden">
-            {/* Animated background blobs */}
-            <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-            <div className="absolute top-0 -right-4 w-72 h-72 bg-pink-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-            <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-            
-            <div className="w-full max-w-md mx-auto px-6 relative z-10">
-                <div className="bg-white/10 backdrop-blur-lg rounded-2xl shadow-2xl p-8 border border-white/20">
+        <div className="min-h-screen flex items-center justify-center bg-primary-900">
+            <div className="w-full max-w-md mx-auto px-6">
+                <div className="bg-white rounded-2xl shadow-xl p-8">
                     <div className="text-center mb-8">
-                        <h1 className="text-4xl font-bold text-white mb-2">Crear Cuenta</h1>
-                        <p className="text-white/70">Únete a HelpDeskPro</p>
+                        <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-900 rounded-xl mb-4">
+                            <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                        </div>
+                        <h1 className="text-4xl font-bold text-gray-900 mb-2">Crear Cuenta</h1>
+                        <p className="text-gray-600">Únete a HelpDeskPro</p>
                     </div>
                     
                     <RegisterForm />

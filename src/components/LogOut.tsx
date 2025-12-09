@@ -13,7 +13,7 @@ export const LogOut = () => {
     return (
         <button
             onClick={handleLogout}
-            className='bg-white text-black px-4 py-2 cursor-pointer rounded-md'>
+            className='bg-white text-black px-4 py-2 cursor-pointer rounded-md fixed bottom-8'>
             LogOut
         </button>
     )

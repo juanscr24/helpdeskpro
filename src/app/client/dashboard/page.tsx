@@ -47,9 +47,9 @@ export default function ClientDashboardPage() {
 
   if (authLoading || isLoading) {
     return (
-      <div className="flex min-h-screen bg-gray-50 items-center justify-center">
+      <div className="flex min-h-screen bg-white items-center justify-center">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-900 mx-auto mb-4"></div>
           <p className="text-gray-600">Cargando...</p>
         </div>
       </div>
@@ -81,7 +81,7 @@ export default function ClientDashboardPage() {
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Tickets Abiertos</p>
-                <p className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                <p className="text-4xl font-bold text-primary-900">
                   {stats.open}
                 </p>
               </div>
@@ -90,7 +90,7 @@ export default function ClientDashboardPage() {
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">En Progreso</p>
-                <p className="text-4xl font-bold text-orange-600">
+                <p className="text-4xl font-bold text-secondary-600">
                   {stats.inProgress}
                 </p>
               </div>
@@ -121,12 +121,12 @@ export default function ClientDashboardPage() {
             <div className="flex gap-4">
               <Link href="/client/tickets/new">
                 <Button variant="primary" size="lg">
-                  ✨ Crear Nuevo Ticket
+                  Crear Nuevo Ticket
                 </Button>
               </Link>
               <Link href="/client/tickets">
                 <Button variant="secondary" size="lg">
-                  🎫 Ver Todos mis Tickets
+                  Ver Todos mis Tickets
                 </Button>
               </Link>
             </div>

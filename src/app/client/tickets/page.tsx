@@ -113,7 +113,7 @@ export default function ClientTicketsPage() {
             </div>
             <Link href="/client/tickets/new">
               <Button variant="primary" size="lg">
-                ✨ Crear Nuevo Ticket
+                Crear Nuevo Ticket
               </Button>
             </Link>
           </div>
