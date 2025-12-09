@@ -142,7 +142,7 @@ export async function PATCH(
 
     // Obtener datos del body
     const body = await req.json();
-    const { status, priority, assignedToId } = body;
+    const { status, priority, assignedToId, title, description } = body;
 
     // Validar campos si se proporcionan
     if (status && !['OPEN', 'IN_PROGRESS', 'RESOLVED', 'CLOSED'].includes(status)) {
@@ -159,6 +159,20 @@ export async function PATCH(
       );
     }
 
+    if (title && title.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'El título no puede estar vacío' },
+        { status: 400 }
+      );
+    }
+
+    if (description && description.trim().length === 0) {
+      return NextResponse.json(
+        { error: 'La descripción no puede estar vacía' },
+        { status: 400 }
+      );
+    }
+
     // Actualizar ticket
     const ticket = await prisma.ticket.update({
       where: { id },
@@ -166,6 +180,8 @@ export async function PATCH(
         ...(status && { status }),
         ...(priority && { priority }),
         ...(assignedToId !== undefined && { assignedToId: assignedToId || null }),
+        ...(title && { title: title.trim() }),
+        ...(description && { description: description.trim() }),
       },
       include: {
         createdBy: {

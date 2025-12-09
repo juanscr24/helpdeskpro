@@ -10,9 +10,10 @@ import { Select } from '@src/components/ui/Select';
 import { Textarea } from '@src/components/ui/Textarea';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@src/hooks/useAuth';
-import { getTicketById, updateTicket, Ticket } from '@src/services/ticketService';
+import { getTicketById, updateTicket, deleteTicket, Ticket } from '@src/services/ticketService';
 import { getCommentsByTicket, createComment, Comment } from '@src/services/commentService';
 import { getAgents, Agent } from '@src/services/agentService';
+import { Trash2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const statusOptions = [
@@ -39,6 +40,8 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
   const [isLoading, setIsLoading] = useState(true);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   // Estados de edición
   const [editStatus, setEditStatus] = useState('');
@@ -121,6 +124,19 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
     }
   };
 
+  const handleDeleteTicket = async () => {
+    try {
+      setIsDeleting(true);
+      await deleteTicket(id);
+      toast.success('Ticket eliminado exitosamente');
+      router.push('/agent/tickets');
+    } catch (error: any) {
+      toast.error(error.message || 'Error al eliminar ticket');
+      setIsDeleting(false);
+      setIsDeleteModalOpen(false);
+    }
+  };
+
   if (authLoading || isLoading) {
     return (
       <div className="flex min-h-screen bg-gray-50 items-center justify-center">
@@ -170,10 +186,21 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
         <Header userName={user?.name || 'Agente'} userEmail={user?.email || ''} />
 
         <main className="p-8 max-w-6xl">
-          {/* Back Button */}
-          <Button variant="ghost" size="sm" onClick={() => router.back()} className="mb-6">
-            ← Volver a tickets
-          </Button>
+          {/* Back Button and Delete Button */}
+          <div className="flex items-center justify-between mb-6">
+            <Button variant="ghost" size="sm" onClick={() => router.back()}>
+              ← Volver a tickets
+            </Button>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => setIsDeleteModalOpen(true)}
+              className="flex items-center gap-2"
+            >
+              <Trash2 size={16} />
+              Eliminar Ticket
+            </Button>
+          </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content - 2/3 */}
@@ -348,6 +375,38 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
           </div>
         </main>
       </div>
+
+      {/* Delete Confirmation Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-md w-full p-6">
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">
+              ¿Eliminar Ticket?
+            </h3>
+            <p className="text-gray-600 mb-6">
+              Esta acción no se puede deshacer. El ticket <strong>"{ticket?.title}"</strong> y todos sus comentarios serán eliminados permanentemente.
+            </p>
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="ghost"
+                onClick={() => setIsDeleteModalOpen(false)}
+                disabled={isDeleting}
+              >
+                Cancelar
+              </Button>
+              <Button
+                variant="danger"
+                onClick={handleDeleteTicket}
+                disabled={isDeleting}
+                className="flex items-center gap-2"
+              >
+                <Trash2 size={16} />
+                {isDeleting ? 'Eliminando...' : 'Eliminar'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

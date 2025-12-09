@@ -85,6 +85,11 @@ export interface UpdateTicketData {
   assignedToId?: string | null;
 }
 
+export interface UpdateTicketFullData extends UpdateTicketData {
+  title?: string;
+  description?: string;
+}
+
 export interface CreateCommentData {
   content: string;
   ticketId: string;

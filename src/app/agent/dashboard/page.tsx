@@ -81,7 +81,7 @@ export default function AgentDashboardPage() {
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Total Tickets</p>
-                <p className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                <p className="text-3xl font-bold">
                   {stats.total}
                 </p>
               </div>
@@ -90,35 +90,35 @@ export default function AgentDashboardPage() {
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Abiertos</p>
-                <p className="text-3xl font-bold text-purple-600">{stats.open}</p>
+                <p className="text-3xl font-bold">{stats.open}</p>
               </div>
             </Card>
 
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">En Progreso</p>
-                <p className="text-3xl font-bold text-orange-600">{stats.inProgress}</p>
+                <p className="text-3xl font-bold">{stats.inProgress}</p>
               </div>
             </Card>
 
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Resueltos</p>
-                <p className="text-3xl font-bold text-green-600">{stats.resolved}</p>
+                <p className="text-3xl font-bold">{stats.resolved}</p>
               </div>
             </Card>
 
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Alta Prioridad</p>
-                <p className="text-3xl font-bold text-red-600">{stats.high}</p>
+                <p className="text-3xl font-bold">{stats.high}</p>
               </div>
             </Card>
 
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Mis Tickets</p>
-                <p className="text-3xl font-bold text-blue-600">{stats.myTickets}</p>
+                <p className="text-3xl font-bold">{stats.myTickets}</p>
               </div>
             </Card>
           </div>
@@ -129,17 +129,17 @@ export default function AgentDashboardPage() {
             <div className="flex gap-4">
               <Link href="/agent/tickets">
                 <Button variant="primary" size="lg">
-                  📋 Ver Todos los Tickets
+                  Ver Todos los Tickets
                 </Button>
               </Link>
               <Link href="/agent/tickets?status=OPEN">
                 <Button variant="secondary" size="lg">
-                  🔥 Tickets Abiertos
+                  Tickets Abiertos
                 </Button>
               </Link>
               <Link href={`/agent/tickets?assignedToId=${user?.id}`}>
                 <Button variant="secondary" size="lg">
-                  👤 Mis Tickets Asignados
+                  Mis Tickets Asignados
                 </Button>
               </Link>
             </div>

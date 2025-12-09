@@ -20,6 +20,7 @@ export const Sidebar = ({ role = 'client', currentPath = '/' }: SidebarProps) =>
     const agentLinks = [
         { href: '/agent/dashboard', label: 'Dashboard' },
         { href: '/agent/tickets', label: 'Todos los Tickets' },
+        { href: '/agent/users', label: 'Gestión de Usuarios' },
     ];
 
     const links = role === 'agent' ? agentLinks : clientLinks;
