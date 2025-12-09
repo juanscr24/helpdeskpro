@@ -1,33 +1,49 @@
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
-import { loginUser } from "@src/services/auth";
-import { LoginData } from "@src/types/login";
+import { login } from "@src/services/authService";
+import { useAuth } from "@src/hooks/useAuth";
+import toast from 'react-hot-toast';
+
+interface LoginData {
+    email: string;
+    password: string;
+}
 
 export const useLogin = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<LoginData>();
     const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const { refreshUser } = useAuth();
     const router = useRouter();
 
     const onSubmit = handleSubmit(async (data: LoginData) => {
-        setError(null); // Limpiar errores previos
+        setError(null);
+        setIsLoading(true);
         
         try {
-            const response = await loginUser(data);
+            const response = await login(data.email, data.password);
             
-            if (response?.error) {
-                // NextAuth devuelve el error como string
-                setError(response.error);
-            } else if (response?.ok) {
-                // Login exitoso
-                router.push('/dashboard');
-            } else {
-                setError('An unexpected error occurred');
+            if (response?.user) {
+                // Actualizar contexto con el usuario
+                await refreshUser();
+                
+                // Redirigir según el rol
+                toast.success(`¡Bienvenido ${response.user.name}!`);
+                if (response.user.role === 'AGENT') {
+                    router.push('/agent/dashboard');
+                } else {
+                    router.push('/client/dashboard');
+                }
             }
         } catch (err: any) {
-            setError(err.message || 'An error occurred during login');
+            const errorMessage = err.message || 'Error al iniciar sesión';
+            setError(errorMessage);
+            toast.error(errorMessage);
+        } finally {
+            setIsLoading(false);
         }
     });
 
-    return { register, onSubmit, errors, error };
+    return { register, onSubmit, errors, error, isLoading };
 };
