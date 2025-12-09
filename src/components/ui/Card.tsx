@@ -16,8 +16,8 @@ export const Card = ({
   return (
     <div
       onClick={onClick}
-      className={`border border-gray-200 rounded-lg p-6 shadow-sm transition-all duration-200 ${
-        hoverable && onClick ? 'hover:shadow-md hover:border-gray-300 cursor-pointer' : ''
+      className={`bg-white border border-purple-100 rounded-xl p-6 shadow-lg transition-all duration-200 backdrop-blur-sm ${
+        hoverable && onClick ? 'hover:shadow-2xl hover:border-purple-300 cursor-pointer hover:-translate-y-1 hover:scale-[1.02]' : ''
       } ${className}`}
     >
       {children}
