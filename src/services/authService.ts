@@ -35,11 +35,24 @@ export async function login(
       throw new Error('Error al iniciar sesión');
     }
 
+    // Esperar un momento para que las cookies se establezcan
+    await new Promise(resolve => setTimeout(resolve, 100));
+
     // Obtener datos del usuario actual
     const user = await getCurrentUser();
     
     if (!user) {
-      throw new Error('No se pudo obtener información del usuario');
+      // Si no se puede obtener el usuario, aún así retornamos éxito
+      // porque el login fue exitoso, el middleware redirigirá correctamente
+      console.warn('Login exitoso pero no se pudo obtener info del usuario inmediatamente');
+      return { 
+        user: {
+          id: '',
+          name: '',
+          email: email,
+          role: 'CLIENT'
+        } 
+      };
     }
 
     return { user };
