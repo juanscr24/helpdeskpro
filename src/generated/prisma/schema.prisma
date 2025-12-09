@@ -50,10 +50,10 @@ model Ticket {
   updatedAt   DateTime       @updatedAt
 
   // relaciones
-  createdBy   User   @relation("TicketsCreated", fields: [createdById], references: [id])
+  createdBy   User   @relation("TicketsCreated", fields: [createdById], references: [id], onDelete: Cascade)
   createdById String
 
-  assignedTo   User?   @relation("TicketsAssigned", fields: [assignedToId], references: [id])
+  assignedTo   User?   @relation("TicketsAssigned", fields: [assignedToId], references: [id], onDelete: SetNull)
   assignedToId String?
 
   comments Comment[]
@@ -64,9 +64,9 @@ model Comment {
   message   String
   createdAt DateTime @default(now())
 
-  ticket   Ticket @relation(fields: [ticketId], references: [id])
+  ticket   Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
   ticketId String
 
-  author   User   @relation(fields: [authorId], references: [id])
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId String
 }
