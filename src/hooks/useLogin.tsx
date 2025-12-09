@@ -29,11 +29,11 @@ export const useLogin = () => {
                 await refreshUser();
                 
                 // Redirigir según el rol
-                toast.success('¡Bienvenido!');
+                toast.success(`¡Bienvenido ${response.user.name}!`);
                 if (response.user.role === 'AGENT') {
-                    router.push('/agent-dashboard');
+                    router.push('/agent/dashboard');
                 } else {
-                    router.push('/dashboard');
+                    router.push('/client/dashboard');
                 }
             }
         } catch (err: any) {

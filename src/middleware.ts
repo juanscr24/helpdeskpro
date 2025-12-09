@@ -24,12 +24,20 @@ export async function middleware(request: NextRequest) {
         // Rutas públicas (login y register)
         const isAuthPage = pathname.startsWith('/login') || pathname.startsWith('/register');
 
-        // Rutas protegidas (dashboard y otras rutas privadas)
-        const isProtectedRoute = pathname.startsWith('/dashboard');
+        // Rutas protegidas
+        const isClientRoute = pathname.startsWith('/client') || pathname.startsWith('/dashboard') || pathname.startsWith('/tickets');
+        const isAgentRoute = pathname.startsWith('/agent');
+        const isProtectedRoute = isClientRoute || isAgentRoute;
 
         // Si el usuario está logueado y trata de acceder a login o register
         if (token && isAuthPage) {
-            return NextResponse.redirect(new URL('/dashboard', request.url));
+            // Redirigir según el rol
+            const userRole = token.role as string;
+            if (userRole === 'AGENT') {
+                return NextResponse.redirect(new URL('/agent/dashboard', request.url));
+            } else {
+                return NextResponse.redirect(new URL('/client/dashboard', request.url));
+            }
         }
 
         // Si el usuario NO está logueado y trata de acceder a rutas protegidas
@@ -38,6 +46,22 @@ export async function middleware(request: NextRequest) {
             url.searchParams.set('callbackUrl', pathname);
             return NextResponse.redirect(url);
         }
+
+        // Protección de rutas por rol
+        if (token && isProtectedRoute) {
+            const userRole = token.role as string;
+            
+            // Si es cliente intentando acceder a rutas de agente
+            if (userRole === 'CLIENT' && isAgentRoute) {
+                return NextResponse.redirect(new URL('/client/dashboard', request.url));
+            }
+            
+            // Si es agente intentando acceder a rutas de cliente
+            if (userRole === 'AGENT' && isClientRoute) {
+                return NextResponse.redirect(new URL('/agent/dashboard', request.url));
+            }
+        }
+
         // Permitir acceso en todos los demás casos
         return NextResponse.next();
     } catch (error) {

@@ -10,14 +10,14 @@ export const Sidebar = ({ role = 'client', currentPath = '/' }: SidebarProps) =>
   const isActive = (path: string) => currentPath === path;
 
   const clientLinks = [
-    { href: '/dashboard', label: '📊 Dashboard' },
-    { href: '/tickets', label: '🎫 Mis Tickets' },
+    { href: '/client/dashboard', label: '📊 Dashboard' },
+    { href: '/client/tickets', label: '🎫 Mis Tickets' },
+    { href: '/client/tickets/new', label: '➕ Crear Ticket' },
   ];
 
   const agentLinks = [
-    { href: '/agent-dashboard', label: '📊 Dashboard' },
-    { href: '/agent-tickets', label: '🎫 Todos los Tickets' },
-    { href: '/agent-tickets/assigned', label: '👤 Mis Asignaciones' },
+    { href: '/agent/dashboard', label: '📊 Dashboard' },
+    { href: '/agent/tickets', label: '🎫 Todos los Tickets' },
   ];
 
   const links = role === 'agent' ? agentLinks : clientLinks;

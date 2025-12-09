@@ -9,9 +9,10 @@ import { prisma } from '@src/lib/db';
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { ticketId: string } }
+  { params }: { params: Promise<{ ticketId: string }> }
 ) {
   try {
+    const { ticketId } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
@@ -35,7 +36,7 @@ export async function GET(
 
     // Verificar que el ticket existe
     const ticket = await prisma.ticket.findUnique({
-      where: { id: params.ticketId },
+      where: { id: ticketId },
     });
 
     if (!ticket) {
@@ -56,7 +57,7 @@ export async function GET(
     // Obtener comentarios
     const comments = await prisma.comment.findMany({
       where: {
-        ticketId: params.ticketId,
+        ticketId,
       },
       include: {
         author: {

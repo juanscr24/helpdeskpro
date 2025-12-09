@@ -10,9 +10,10 @@ import { sendTicketAssignedEmail } from '@src/lib/email';
  */
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
@@ -67,7 +68,7 @@ export async function PUT(
 
     // Buscar ticket
     const existingTicket = await prisma.ticket.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!existingTicket) {
@@ -79,7 +80,7 @@ export async function PUT(
 
     // Asignar ticket
     const ticket = await prisma.ticket.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         assignedToId: agentId,
         // Cambiar estado a IN_PROGRESS si estaba OPEN

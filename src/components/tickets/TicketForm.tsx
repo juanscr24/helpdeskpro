@@ -73,7 +73,7 @@ export const TicketForm = ({ onSuccess }: TicketFormProps) => {
         onSuccess();
       } else {
         // Redirigir al detalle del ticket creado
-        router.push(`/tickets/${ticket.id}`);
+        router.push(`/client/tickets/${ticket.id}`);
       }
     } catch (error: any) {
       toast.error(error.message || 'Error al crear el ticket');

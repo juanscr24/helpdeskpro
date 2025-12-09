@@ -10,9 +10,10 @@ import { sendTicketClosedEmail } from '@src/lib/email';
  */
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
@@ -36,7 +37,7 @@ export async function GET(
 
     // Buscar ticket
     const ticket = await prisma.ticket.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         createdBy: {
           select: {
@@ -91,9 +92,10 @@ export async function GET(
  */
 export async function PATCH(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
@@ -125,7 +127,7 @@ export async function PATCH(
 
     // Buscar ticket actual
     const existingTicket = await prisma.ticket.findUnique({
-      where: { id: params.id },
+      where: { id },
       include: {
         createdBy: true,
       },
@@ -159,7 +161,7 @@ export async function PATCH(
 
     // Actualizar ticket
     const ticket = await prisma.ticket.update({
-      where: { id: params.id },
+      where: { id },
       data: {
         ...(status && { status }),
         ...(priority && { priority }),
@@ -208,9 +210,10 @@ export async function PATCH(
  */
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.email) {
@@ -234,7 +237,7 @@ export async function DELETE(
 
     // Buscar ticket
     const ticket = await prisma.ticket.findUnique({
-      where: { id: params.id },
+      where: { id },
     });
 
     if (!ticket) {
@@ -254,7 +257,7 @@ export async function DELETE(
 
     // Eliminar ticket (cascade eliminará comments)
     await prisma.ticket.delete({
-      where: { id: params.id },
+      where: { id },
     });
 
     return NextResponse.json({ success: true });
