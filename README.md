@@ -348,78 +348,70 @@ helpdeskpro/
 
 ---
 
-## 📝 Criterios de Aceptación Cumplidos
+## 📝 Acceptance Criteria Met
 
-✅ **4.1) Gestión de Tickets**
-- Registro de tickets con datos obligatorios
-- Edición de estado, prioridad y agente asignado
-- Cierre de tickets
-- Listado y filtrado por usuario, estado y prioridad
+✅ **4.1) Ticket Management**
+- Ticket registration with required data
+- Edit status, priority, and assigned agent
+- Close tickets
+- List and filter by user, status, and priority
+- Edit ticket title and description
+- Delete tickets with cascade
 
-✅ **4.2) Gestión de Usuarios, Roles y Autenticación**
-- Login funcional con NextAuth.js
-- Redirección según rol (CLIENT/AGENT)
-- Rutas protegidas con middleware
-- Estado de sesión centralizado con Context API
+✅ **4.2) User Management, Roles and Authentication**
+- Functional login with NextAuth.js
+- Redirect based on role (CLIENT/AGENT)
+- Protected routes with middleware
+- Centralized session state with Context API
+- User management interface for agents
+- Change user roles
+- Delete users
 
-✅ **4.3) Comentarios y UI Reutilizable**
-- Hilo de comentarios en cada ticket
-- Permisos según rol para comentar
-- Cards con Badges y Buttons
-- Props tipadas y variantes en componentes
+✅ **4.3) Comments and Reusable UI**
+- Comment thread on each ticket
+- Role-based permissions for commenting
+- Cards with Badges and Buttons
+- Typed props and variants in components
 
-✅ **4.4) API, Servicios y Dashboard**
-- API completa (GET/POST/PUT/DELETE)
-- Servicios Axios consumiendo la API
-- Dashboard con listado, creación y gestión de tickets
-- Sin errores en ejecución
+✅ **4.4) API, Services and Dashboard**
+- Complete API (GET/POST/PUT/DELETE/PATCH)
+- Axios services consuming the API
+- Dashboard with listing, creation and ticket management
+- No execution errors
 
-✅ **4.5) Notificaciones por Correo** *(Estructura preparada para implementación futura)*
-- Funciones de email definidas en `lib/email.ts`
-- Ready para integración con servicio SMTP
+✅ **4.5) Email Notifications** *(Structure prepared for future implementation)*
+- Email functions defined in `lib/email.ts`
+- Ready for SMTP service integration
 
-✅ **4.6) Manejo de Errores y Validaciones**
-- Mensajes claros con toast notifications
-- Validaciones de negocio implementadas
-- Try/catch en todas las peticiones
-- Estados de error y loading
+✅ **4.6) Error Handling and Validations**
+- Clear messages with toast notifications
+- Business validations implemented
+- Try/catch in all requests
+- Error and loading states
 
-✅ **4.7) Documentación**
-- README completo con toda la información
-- Requisitos previos
-- Pasos de instalación
-- Variables de entorno
-- Datos del Coder
+✅ **4.7) Documentation**
+- Complete README with all information
+- Prerequisites
+- Installation steps
+- Environment variables
+- Developer data
 
 ---
 
-## 🚀 Deploy
+## 🚀 Deployment
 
-### Deploy en Vercel
+### Deploy on Vercel
 
-1. Conecta tu repositorio de GitHub a Vercel
-2. Configura las variables de entorno en Vercel
-3. Deploy automático en cada push
+1. Connect your GitHub repository to Vercel
+2. Configure environment variables in Vercel
+3. Automatic deployment on each push
 
-### Variables de Entorno en Vercel
+### Environment Variables on Vercel
 
 ```env
 DATABASE_URL=postgresql://...
 NEXTAUTH_SECRET=...
-NEXTAUTH_URL=https://tu-dominio.vercel.app
+NEXTAUTH_URL=https://your-domain.vercel.app
 ```
 
----
-
-## 📄 Licencia
-
-Este proyecto fue desarrollado como parte de un ejercicio académico para Cohorte 3.
-
----
-
-## 📞 Soporte
-
-Si tienes alguna pregunta o problema, por favor contacta a:
-- **Email**: juanscr24@gmail.com
-- **GitHub Issues**: [Crear Issue](https://github.com/juanscr24/helpdeskpro/issues)
 ---
