@@ -3,27 +3,55 @@
 import { useLogin } from "@src/hooks/useLogin";
 
 const LoginForm = () => {
-    const { register, onSubmit, errors, error } = useLogin();
+    const { register, onSubmit, errors, error, isLoading } = useLogin();
 
     return (
-        <form onSubmit={onSubmit} className="w-1/4">
-            {error && <p className="p-2 mb-3 text-xs rounded bg-red-500 w-full">{error}</p>}
-            <h1 className="text-slate-200 font-bold text-4xl mb-4">Login</h1>
+        <form onSubmit={onSubmit} className="w-full max-w-md mx-auto">
+            {error && (
+                <div className="p-3 mb-4 text-sm rounded bg-red-100 text-red-700 border border-red-300">
+                    {error}
+                </div>
+            )}
+            <h1 className="text-slate-800 font-bold text-4xl mb-6">Iniciar Sesión</h1>
 
-            <input type="email" placeholder="Email"
-                {...register("email", { required: true })}
-                className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
-            />
-            {errors.email && <span className="text-red-500">This field is required</span>}
+            <div className="mb-4">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Email
+                </label>
+                <input 
+                    type="email" 
+                    placeholder="tu@email.com"
+                    {...register("email", { required: "El email es requerido" })}
+                    className="p-3 rounded border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 block w-full"
+                    disabled={isLoading}
+                />
+                {errors.email && (
+                    <span className="text-red-500 text-sm mt-1">{errors.email.message}</span>
+                )}
+            </div>
 
-            <input type="password" placeholder="******"
-                {...register("password", { required: true })}
-                className="p-3 rounded block mb-2 bg-slate-900 text-slate-300 w-full"
-            />
-            {errors.password && <span className="text-red-500">This field is required</span>}
+            <div className="mb-6">
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Contraseña
+                </label>
+                <input 
+                    type="password" 
+                    placeholder="••••••••"
+                    {...register("password", { required: "La contraseña es requerida" })}
+                    className="p-3 rounded border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 block w-full"
+                    disabled={isLoading}
+                />
+                {errors.password && (
+                    <span className="text-red-500 text-sm mt-1">{errors.password.message}</span>
+                )}
+            </div>
 
-            <button className="w-full bg-blue-500 text-white p-3 rounded-lg" type="submit">
-                Login
+            <button 
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-medium transition-colors disabled:bg-blue-300 disabled:cursor-not-allowed" 
+                type="submit"
+                disabled={isLoading}
+            >
+                {isLoading ? 'Iniciando sesión...' : 'Iniciar Sesión'}
             </button>
         </form>
     );
