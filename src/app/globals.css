@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  /* Paleta de colores inspirada en el diseño */
+  /* Paleta de colores profesional - Morado oscuro como primario */
   --color-primary-50: #faf5ff;
   --color-primary-100: #f3e8ff;
   --color-primary-200: #e9d5ff;
   --color-primary-300: #d8b4fe;
   --color-primary-400: #c084fc;
-  --color-primary-500: #a855f7;
-  --color-primary-600: #9333ea;
-  --color-primary-700: #7e22ce;
-  --color-primary-800: #6b21a8;
-  --color-primary-900: #581c87;
-  --color-primary-950: #3b0764;
+  --color-primary-500: #9333ea;
+  --color-primary-600: #7e22ce;
+  --color-primary-700: #6b21a8;
+  --color-primary-800: #581c87;
+  --color-primary-900: #3b0764;
+  --color-primary-950: #2d0550;
 
+  /* Rosa como secundario */
   --color-secondary-50: #fdf4ff;
   --color-secondary-100: #fae8ff;
   --color-secondary-200: #f5d0fe;
@@ -26,6 +27,7 @@
   --color-secondary-900: #701a75;
   --color-secondary-950: #4a044e;
 
+  /* Naranja como acento */
   --color-accent-50: #fff7ed;
   --color-accent-100: #ffedd5;
   --color-accent-200: #fed7aa;
@@ -37,16 +39,11 @@
   --color-accent-800: #9a3412;
   --color-accent-900: #7c2d12;
   --color-accent-950: #431407;
-
-  /* Gradientes personalizados */
-  --gradient-primary: linear-gradient(135deg, #7e22ce 0%, #c026d3 50%, #f97316 100%);
-  --gradient-secondary: linear-gradient(135deg, #581c87 0%, #86198f 50%, #c2410c 100%);
-  --gradient-hero: linear-gradient(135deg, #3b0764 0%, #7e22ce 25%, #c026d3 50%, #ea580c 75%, #fdba74 100%);
 }
 
-/* Estilos base con gradiente */
+/* Estilos base */
 body {
-  @apply bg-gray-50 text-gray-900;
+  @apply bg-white text-gray-900;
 }
 
 /* Clases de utilidad para gradientes */
