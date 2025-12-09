@@ -1,62 +1,89 @@
-import React from 'react';
+'use client';
+
 import { Card } from '@src/components/ui/Card';
 import { Badge } from '@src/components/ui/Badge';
 import { Button } from '@src/components/ui/Button';
+import Link from 'next/link';
+import type { Ticket, TicketStatus, TicketPriority, StatusConfig, PriorityConfig } from '@src/types';
 
 interface TicketCardProps {
-  id: number;
-  title: string;
-  status: 'open' | 'in_progress' | 'resolved' | 'closed';
-  priority: 'low' | 'medium' | 'high';
-  createdAt: string;
-  createdBy?: string;
-  assignedTo?: string;
-  onViewDetail?: () => void;
+  ticket: Ticket;
+  role?: 'client' | 'agent';
+  showActions?: boolean;
+  className?: string;
 }
 
-export const TicketCard = ({
-  id,
-  title,
-  status,
-  priority,
-  createdAt,
-  createdBy,
-  assignedTo,
-  onViewDetail,
-}: TicketCardProps) => {
+const statusConfig: Record<TicketStatus, StatusConfig> = {
+  OPEN: { label: 'Abierto', variant: 'open' },
+  IN_PROGRESS: { label: 'En Progreso', variant: 'in_progress' },
+  RESOLVED: { label: 'Resuelto', variant: 'resolved' },
+  CLOSED: { label: 'Cerrado', variant: 'closed' },
+};
+
+const priorityConfig: Record<TicketPriority, PriorityConfig> = {
+  LOW: { label: 'Baja', variant: 'low' },
+  MEDIUM: { label: 'Media', variant: 'medium' },
+  HIGH: { label: 'Alta', variant: 'high' },
+};
+
+export function TicketCard({ ticket, role = 'client', showActions = true, className = '' }: TicketCardProps) {
+  const statusInfo = statusConfig[ticket.status];
+  const priorityInfo = priorityConfig[ticket.priority];
+
+  const detailHref = role === 'agent' ? `/agent/tickets/${ticket.id}` : `/client/tickets/${ticket.id}`;
+
   return (
-    <Card hoverable onClick={onViewDetail} className="cursor-pointer">
-      <div className="flex justify-between items-start mb-4">
-        <div className="flex-1">
-          <p className="text-xs font-semibold text-gray-500 mb-1">#{id}</p>
-          <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+    <Card className={`hover:shadow-lg transition-shadow ${className}`}>
+      <div className="space-y-4">
+        {/* Header */}
+        <div className="flex items-start justify-between">
+          <div className="flex-1 min-w-0">
+            <h3 className="text-lg font-semibold text-gray-900 truncate">{ticket.title}</h3>
+            <p className="text-sm text-gray-600 mt-1 line-clamp-2">{ticket.description}</p>
+          </div>
         </div>
-      </div>
 
-      <div className="flex gap-2 mb-4">
-        <Badge variant={status}>{status.toUpperCase()}</Badge>
-        <Badge variant={priority}>{priority.toUpperCase()}</Badge>
-      </div>
+        {/* Badges */}
+        <div className="flex flex-wrap gap-2">
+          <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
+          <Badge variant={priorityInfo.variant}>Prioridad: {priorityInfo.label}</Badge>
+        </div>
 
-      <div className="space-y-2 text-sm text-gray-600 mb-4">
-        <p>📅 Creado: {createdAt}</p>
-        {createdBy && <p>👤 Por: {createdBy}</p>}
-        {assignedTo && <p>👨‍💼 Asignado: {assignedTo}</p>}
-      </div>
+        {/* Metadata */}
+        <div className="text-sm text-gray-600 space-y-1">
+          <div className="flex items-center gap-2">
+            <span className="font-medium">Creado por:</span>
+            <span>{ticket.createdBy.name}</span>
+          </div>
+          {ticket.assignedTo && (
+            <div className="flex items-center gap-2">
+              <span className="font-medium">Asignado a:</span>
+              <span>{ticket.assignedTo.name}</span>
+            </div>
+          )}
+          <div className="flex items-center gap-2">
+            <span className="font-medium">Fecha:</span>
+            <span>
+              {new Date(ticket.createdAt).toLocaleDateString('es-ES', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+              })}
+            </span>
+          </div>
+        </div>
 
-      {onViewDetail && (
-        <Button
-          variant="primary"
-          size="sm"
-          onClick={(e) => {
-            e.stopPropagation();
-            onViewDetail();
-          }}
-          className="w-full"
-        >
-          Ver Detalles
-        </Button>
-      )}
+        {/* Actions */}
+        {showActions && (
+          <div className="flex gap-2 pt-2 border-t border-gray-200">
+            <Link href={detailHref} className="flex-1">
+              <Button variant="primary" size="sm" className="w-full">
+                Ver Detalle
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
     </Card>
   );
-};
+}

@@ -1,30 +1,14 @@
 import api from './api';
+import type {
+  Ticket,
+  TicketStatus,
+  TicketPriority,
+  CreateTicketData,
+  UpdateTicketData,
+} from '@src/types';
 
-export type TicketStatus = 'OPEN' | 'IN_PROGRESS' | 'RESOLVED' | 'CLOSED';
-export type TicketPriority = 'LOW' | 'MEDIUM' | 'HIGH';
-
-export interface Ticket {
-  id: string;
-  title: string;
-  description: string;
-  status: TicketStatus;
-  priority: TicketPriority;
-  createdAt: string;
-  updatedAt: string;
-  createdBy: {
-    id: string;
-    name: string;
-    email: string;
-  };
-  assignedTo?: {
-    id: string;
-    name: string;
-    email: string;
-  } | null;
-  _count?: {
-    comments: number;
-  };
-}
+// Re-export types for compatibility
+export type { Ticket, TicketStatus, TicketPriority, CreateTicketData, UpdateTicketData };
 
 export interface TicketFilters {
   status?: TicketStatus;
@@ -33,16 +17,11 @@ export interface TicketFilters {
   search?: string;
 }
 
-export interface CreateTicketData {
-  title: string;
-  description: string;
-  priority: TicketPriority;
-}
-
-export interface UpdateTicketData {
-  status?: TicketStatus;
-  priority?: TicketPriority;
-  assignedToId?: string;
+// API Response with optional count
+export interface TicketWithCount extends Ticket {
+  _count?: {
+    comments: number;
+  };
 }
 
 /**

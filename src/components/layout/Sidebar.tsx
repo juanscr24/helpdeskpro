@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { LogOut } from '../LogOut';
+import { LogoutButton } from '@src/components/auth';
 import { User, UserCog } from 'lucide-react';
 
 interface SidebarProps {
@@ -54,7 +54,7 @@ export const Sidebar = ({ role = 'client', currentPath = '/' }: SidebarProps) =>
                         {link.label}
                     </Link>
                 ))}
-                <LogOut />
+                <LogoutButton />
             </nav>
 
             {/* Decorative element at bottom */}

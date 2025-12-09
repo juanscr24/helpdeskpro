@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
-import { TicketCard } from '@src/components/TicketCard';
+import { TicketCard } from '@src/components/tickets';
 import { Button } from '@src/components/ui/Button';
 import { Select } from '@src/components/ui/Select';
 import { Input } from '@src/components/ui/Input';

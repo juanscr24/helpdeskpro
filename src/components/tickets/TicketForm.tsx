@@ -7,6 +7,7 @@ import { Textarea } from '@src/components/ui/Textarea';
 import { Select } from '@src/components/ui/Select';
 import { Button } from '@src/components/ui/Button';
 import { createTicket } from '@src/services/ticketService';
+import { TicketPriority } from '@src/types';
 import toast from 'react-hot-toast';
 
 interface TicketFormProps {
@@ -64,7 +65,7 @@ export const TicketForm = ({ onSuccess }: TicketFormProps) => {
       const ticket = await createTicket({
         title: formData.title,
         description: formData.description,
-        priority: formData.priority as 'LOW' | 'MEDIUM' | 'HIGH',
+        priority: formData.priority as TicketPriority,
       });
 
       toast.success('¡Ticket creado exitosamente!');

@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
 import { Card } from '@src/components/ui/Card';
-import { TicketCard } from '@src/components/TicketCard';
+import { TicketCard } from '@src/components/tickets';
 import { Button } from '@src/components/ui/Button';
 import Link from 'next/link';
 import { useAuth } from '@src/hooks/useAuth';
