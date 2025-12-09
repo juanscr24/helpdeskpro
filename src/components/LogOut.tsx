@@ -1,6 +1,8 @@
 'use client'
 
 import { signOut } from "next-auth/react";
+import { Button } from "@src/components/ui/Button";
+import { LogOut as LogoOut } from 'lucide-react';
 
 export const LogOut = () => {
     const handleLogout = async () => {
@@ -11,11 +13,12 @@ export const LogOut = () => {
     };
 
     return (
-        <button
+        <Button
             onClick={handleLogout}
-            className='bg-white text-black px-4 py-2 cursor-pointer rounded-md fixed bottom-8'>
-            LogOut
-        </button>
+            variant="secondary"
+            className='fixed bottom-8'>
+            Log Out<LogoOut />
+        </Button>
     )
 }
 

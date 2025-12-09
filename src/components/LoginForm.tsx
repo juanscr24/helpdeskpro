@@ -1,6 +1,8 @@
 'use client'
 
 import { useLogin } from "@src/hooks/useLogin";
+import { Input } from "@src/components/ui/Input";
+import { Button } from "@src/components/ui/Button";
 
 const LoginForm = () => {
     const { register, onSubmit, errors, error, isLoading } = useLogin();
@@ -16,52 +18,31 @@ const LoginForm = () => {
                 </div>
             )}
 
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Email
-                </label>
-                <input
-                    type="email"
-                    placeholder="tu@email.com"
-                    {...register("email", { required: "El email es requerido" })}
-                    className="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none transition-all"
-                    disabled={isLoading}
-                />
-                {errors.email && (
-                    <span className="text-red-600 text-sm mt-1 flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                        {errors.email.message}
-                    </span>
-                )}
-            </div>
+            <Input
+                type="email"
+                label="Email"
+                placeholder="tu@email.com"
+                {...register("email", { required: "El email es requerido" })}
+                error={errors.email?.message}
+                disabled={isLoading}
+                required
+            />
 
-            <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Contraseña
-                </label>
-                <input
-                    type="password"
-                    placeholder="••••••••"
-                    {...register("password", { required: "La contraseña es requerida" })}
-                    className="w-full p-3 rounded-lg bg-white border border-gray-300 text-gray-900 placeholder-gray-400 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 focus:outline-none transition-all"
-                    disabled={isLoading}
-                />
-                {errors.password && (
-                    <span className="text-red-600 text-sm mt-1 flex items-center gap-1">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                        </svg>
-                        {errors.password.message}
-                    </span>
-                )}
-            </div>
+            <Input
+                type="password"
+                label="Contraseña"
+                placeholder="••••••••"
+                {...register("password", { required: "La contraseña es requerida" })}
+                error={errors.password?.message}
+                disabled={isLoading}
+                required
+            />
 
-            <button
-                className="w-full bg-primary-900 hover:bg-primary-800 text-white p-3 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-sm mt-6"
+            <Button
                 type="submit"
                 disabled={isLoading}
+                className="w-full mt-6"
+                size="lg"
             >
                 {isLoading ? (
                     <span className="flex items-center justify-center">
@@ -74,7 +55,7 @@ const LoginForm = () => {
                 ) : (
                     'Iniciar Sesión'
                 )}
-            </button>
+            </Button>
             <div className="text-center mt-4">
                 <p className="text-gray-600 text-sm">
                     ¿No tienes cuenta?{' '}

@@ -5,7 +5,7 @@ import RegisterForm from "@src/components/RegisterForm";
 const RegisterPage = () => {
     return (
         <div className="min-h-screen flex items-center justify-center bg-primary-900">
-            <div className="w-full max-w-md mx-auto px-6">
+            <div className="w-full max-w-md">
                 <div className="bg-white rounded-2xl shadow-xl p-8">
                     <div className="text-center mb-8">
                         <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-900 rounded-xl mb-4">
