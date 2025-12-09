@@ -1,6 +1,14 @@
-# 🎫 HelpDeskPro - Sistema de Gestión de Tickets de SoporteThis is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## 👨‍💻 Datos del Desarrollador
 
+**Nombre**: Juan Cardona  
+**Clan**: Macondo  
+**Correo**: juanscr24@gmail.com  
+**Documento de Identidad**: 1140897309  
+**GitHub**: [@juanscr24](https://github.com/juanscr24)  
+**LinkedIn**: [Juan Cardona](https://www.linkedin.com/in/juanscr24/)
 
+---
+# 🎫 HelpDeskPro - Sistema de Gestión de Tickets de Soporte
 
 Sistema completo de gestión de tickets de soporte técnico construido con **Next.js 16**, **Prisma**, **PostgreSQL** y **NextAuth.js**. Permite a clientes crear y dar seguimiento a tickets, mientras que los agentes pueden gestionarlos, asignarlos y responder eficientemente.## Getting Started
 
@@ -359,17 +367,6 @@ helpdeskpro/
 
 ---
 
-## 👨‍💻 Datos del Desarrollador
-
-**Nombre**: Juan Sebastian Cardona Rodriguez  
-**Clan**: Cohorte 3  
-**Correo**: jscardonar@gmail.com  
-**Documento de Identidad**: 1001449506  
-**GitHub**: [@juanscr24](https://github.com/juanscr24)  
-**LinkedIn**: [Juan Cardona](https://www.linkedin.com/in/juan-sebastian-cardona-rodriguez-763636173/)
-
----
-
 ## 🚀 Deploy
 
 ### Deploy en Vercel
@@ -397,7 +394,7 @@ Este proyecto fue desarrollado como parte de un ejercicio académico para Cohort
 ## 📞 Soporte
 
 Si tienes alguna pregunta o problema, por favor contacta a:
-- **Email**: jscardonar@gmail.com
+- **Email**: juanscr24@gmail.com
 - **GitHub Issues**: [Crear Issue](https://github.com/juanscr24/helpdeskpro/issues)
 
 ---

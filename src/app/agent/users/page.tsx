@@ -112,13 +112,19 @@ export default function UsersManagementPage() {
 
     if (status === 'loading' || isLoading) {
         return (
-            <div className="flex h-screen">
-                <Sidebar role="agent" />
-                <div className="flex-1 flex flex-col">
-                    <Header />
-                    <main className="flex-1 p-8 bg-gray-50">
-                        <div className="flex items-center justify-center h-full">
-                            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-900"></div>
+            <div className="flex min-h-screen bg-gray-50">
+                <Sidebar role="agent" currentPath="/agent/users" />
+                <div className="flex-1 ml-64">
+                    <Header 
+                        userName={session?.user?.name || 'Agente'} 
+                        userEmail={session?.user?.email || ''} 
+                    />
+                    <main className="p-8">
+                        <div className="flex items-center justify-center min-h-[60vh]">
+                            <div className="text-center">
+                                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-900 mx-auto mb-4"></div>
+                                <p className="text-gray-600">Cargando usuarios...</p>
+                            </div>
                         </div>
                     </main>
                 </div>
@@ -130,11 +136,14 @@ export default function UsersManagementPage() {
     const agentsCount = users.filter((u) => u.role === 'AGENT').length;
 
     return (
-        <div className="flex h-screen bg-gray-50">
-            <Sidebar role="agent" />
-            <div className="flex-1 flex flex-col overflow-hidden">
-                <Header />
-                <main className="flex-1 overflow-y-auto p-8">
+        <div className="flex min-h-screen bg-gray-50">
+            <Sidebar role="agent" currentPath="/agent/users" />
+            <div className="flex-1 ml-64">
+                <Header 
+                    userName={session?.user?.name || 'Agente'} 
+                    userEmail={session?.user?.email || ''} 
+                />
+                <main className="p-8">
                     <div className="max-w-7xl mx-auto">
                         {/* Header */}
                         <div className="mb-8">

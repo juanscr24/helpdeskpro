@@ -6,6 +6,7 @@ import { Sidebar } from '@src/components/layout/Sidebar';
 import { Card } from '@src/components/ui/Card';
 import { Badge } from '@src/components/ui/Badge';
 import { Button } from '@src/components/ui/Button';
+import { Input } from '@src/components/ui/Input';
 import { Select } from '@src/components/ui/Select';
 import { Textarea } from '@src/components/ui/Textarea';
 import { useRouter } from 'next/navigation';
@@ -13,7 +14,7 @@ import { useAuth } from '@src/hooks/useAuth';
 import { getTicketById, updateTicket, deleteTicket, Ticket } from '@src/services/ticketService';
 import { getCommentsByTicket, createComment, Comment } from '@src/services/commentService';
 import { getAgents, Agent } from '@src/services/agentService';
-import { Trash2 } from 'lucide-react';
+import { Trash2, Edit2 } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 const statusOptions = [
@@ -42,11 +43,15 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
   const [isUpdating, setIsUpdating] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditingSaving, setIsEditingSaving] = useState(false);
 
   // Estados de edición
   const [editStatus, setEditStatus] = useState('');
   const [editPriority, setEditPriority] = useState('');
   const [editAssignedTo, setEditAssignedTo] = useState('');
+  const [editTitle, setEditTitle] = useState('');
+  const [editDescription, setEditDescription] = useState('');
 
   useEffect(() => {
     if (!authLoading && user) {
@@ -59,6 +64,8 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
       setEditStatus(ticket.status);
       setEditPriority(ticket.priority);
       setEditAssignedTo(ticket.assignedTo?.id || '');
+      setEditTitle(ticket.title);
+      setEditDescription(ticket.description);
     }
   }, [ticket]);
 
@@ -137,6 +144,28 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
     }
   };
 
+  const handleEditTicket = async () => {
+    if (!editTitle.trim() || !editDescription.trim()) {
+      toast.error('El título y la descripción no pueden estar vacíos');
+      return;
+    }
+
+    try {
+      setIsEditingSaving(true);
+      const updatedTicket = await updateTicket(ticket!.id, {
+        title: editTitle.trim(),
+        description: editDescription.trim(),
+      });
+      setTicket(updatedTicket);
+      setIsEditModalOpen(false);
+      toast.success('Ticket actualizado exitosamente');
+    } catch (error: any) {
+      toast.error(error.message || 'Error al actualizar ticket');
+    } finally {
+      setIsEditingSaving(false);
+    }
+  };
+
   if (authLoading || isLoading) {
     return (
       <div className="flex min-h-screen bg-gray-50 items-center justify-center">
@@ -186,20 +215,31 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
         <Header userName={user?.name || 'Agente'} userEmail={user?.email || ''} />
 
         <main className="p-8 max-w-6xl">
-          {/* Back Button and Delete Button */}
+          {/* Back Button and Action Buttons */}
           <div className="flex items-center justify-between mb-6">
             <Button variant="ghost" size="sm" onClick={() => router.back()}>
               ← Volver a tickets
             </Button>
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={() => setIsDeleteModalOpen(true)}
-              className="flex items-center gap-2"
-            >
-              <Trash2 size={16} />
-              Eliminar Ticket
-            </Button>
+            <div className="flex gap-3">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={() => setIsEditModalOpen(true)}
+                className="flex items-center gap-2"
+              >
+                <Edit2 size={16} />
+                Editar Ticket
+              </Button>
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={() => setIsDeleteModalOpen(true)}
+                className="flex items-center gap-2"
+              >
+                <Trash2 size={16} />
+                Eliminar Ticket
+              </Button>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -375,6 +415,56 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
           </div>
         </main>
       </div>
+
+      {/* Edit Ticket Modal */}
+      {isEditModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+          <div className="bg-white rounded-lg max-w-2xl w-full p-6 max-h-[90vh] overflow-y-auto">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4">
+              Editar Ticket
+            </h3>
+            <div className="space-y-4 mb-6">
+              <Input
+                label="Título"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                placeholder="Título del ticket"
+                disabled={isEditingSaving}
+              />
+              <Textarea
+                label="Descripción"
+                value={editDescription}
+                onChange={(e) => setEditDescription(e.target.value)}
+                placeholder="Descripción detallada del problema"
+                rows={8}
+                disabled={isEditingSaving}
+              />
+            </div>
+            <div className="flex gap-3 justify-end">
+              <Button
+                variant="ghost"
+                onClick={() => {
+                  setIsEditModalOpen(false);
+                  setEditTitle(ticket?.title || '');
+                  setEditDescription(ticket?.description || '');
+                }}
+                disabled={isEditingSaving}
+              >
+                Cancelar
+              </Button>
+              <Button
+                variant="primary"
+                onClick={handleEditTicket}
+                disabled={isEditingSaving || !editTitle.trim() || !editDescription.trim()}
+                className="flex items-center gap-2"
+              >
+                <Edit2 size={16} />
+                {isEditingSaving ? 'Guardando...' : 'Guardar Cambios'}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Delete Confirmation Modal */}
       {isDeleteModalOpen && (
