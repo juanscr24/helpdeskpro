@@ -1,292 +1,311 @@
-## 👨‍💻 Datos del Desarrollador
+## 👨‍💻 Developer Information
 
-**Nombre**: Juan Cardona  
+**Name**: Juan Cardona  
 **Clan**: Macondo  
-**Correo**: juanscr24@gmail.com  
-**Documento de Identidad**: 1140897309  
+**Email**: juanscr24@gmail.com  
+**ID**: 1140897309  
 **GitHub**: [@juanscr24](https://github.com/juanscr24)  
 **LinkedIn**: [Juan Cardona](https://www.linkedin.com/in/juanscr24/)
 
 ---
-# 🎫 HelpDeskPro - Sistema de Gestión de Tickets de Soporte
 
-Sistema completo de gestión de tickets de soporte técnico construido con **Next.js 16**, **Prisma**, **PostgreSQL** y **NextAuth.js**. Permite a clientes crear y dar seguimiento a tickets, mientras que los agentes pueden gestionarlos, asignarlos y responder eficientemente.## Getting Started
+# 🎫 HelpDeskPro - Support Ticket Management System
+
+Complete technical support ticket management system built with **Next.js 16**, **Prisma**, **PostgreSQL**, and **NextAuth.js**. Allows clients to create and track tickets, while agents can manage, assign, and respond efficiently.
+
+---
+
+## Getting Started
+
+First, run the development server:
 
 
 
----First, run the development server:
-
-
-
-## 📋 Tabla de Contenidos```bash
-
+```bash
 npm run dev
+```
 
-- [Características](#-características)# or
-
-- [Tecnologías](#-tecnologías)yarn dev
-
-- [Requisitos Previos](#-requisitos-previos)# or
-
-- [Instalación](#-instalación)pnpm dev
-
-- [Configuración](#-configuración)# or
-
-- [Uso](#-uso)bun dev
-
-- [Estructura del Proyecto](#-estructura-del-proyecto)```
-
-- [API Endpoints](#-api-endpoints)
-
-- [Datos del Desarrollador](#-datos-del-desarrollador)Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
 
 ---You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Learn More
 
-## ✨ CaracterísticasThis project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+To learn more about Next.js, take a look at the following resources:
 
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### Para Clientes## Learn More
+## Deploy on Vercel
 
-- ✅ Registro e inicio de sesión seguro
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-- ✅ Dashboard con estadísticas personalesTo learn more about Next.js, take a look at the following resources:
-
-- ✅ Crear tickets con título, descripción y prioridad
-
-- ✅ Ver lista de tickets propios con filtros- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-
-- ✅ Ver detalle completo de cada ticket- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-- ✅ Agregar comentarios a los tickets
-
-- ✅ Seguimiento del estado de los ticketsYou can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-
-
-### Para Agentes## Deploy on Vercel
-
-- ✅ Dashboard con estadísticas globales
-
-- ✅ Ver todos los tickets del sistemaThe easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-- ✅ Filtrar por estado, prioridad y agente asignado
-
-- ✅ Editar estado y prioridad de ticketsCheck out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-- ✅ Asignar tickets a agentes
-- ✅ Responder a clientes mediante comentarios
-- ✅ Cerrar tickets resueltos
-
-### Características Técnicas
-- ✅ Autenticación con NextAuth.js
-- ✅ Rutas protegidas por rol (CLIENT/AGENT)
-- ✅ API RESTful completa
-- ✅ Validaciones de negocio
-- ✅ Manejo de errores con mensajes claros
-- ✅ Sistema de notificaciones con toast
-- ✅ Diseño responsivo con Tailwind CSS 4
-- ✅ TypeScript para seguridad de tipos
-- ✅ Base de datos PostgreSQL con Prisma ORM
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
 ---
 
-## 🛠 Tecnologías
+## 📋 Table of Contents
 
-- **Frontend**: Next.js 16 (App Router con Turbopack), React 19, TypeScript
-- **Estilos**: Tailwind CSS 4
+- [Features](#-features)
+- [Technologies](#-technologies)
+- [Prerequisites](#-prerequisites)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Usage](#-usage)
+- [Project Structure](#-project-structure)
+- [API Endpoints](#-api-endpoints)
+- [Developer Information](#-developer-information)
+
+---
+
+## ✨ Features
+
+### For Clients
+- ✅ Secure registration and login
+- ✅ Dashboard with personal statistics
+- ✅ Create tickets with title, description, and priority
+- ✅ View list of own tickets with filters
+- ✅ View complete detail of each ticket
+- ✅ Add comments to tickets
+- ✅ Track ticket status
+
+### For Agents
+- ✅ Dashboard with global statistics
+- ✅ View all system tickets
+- ✅ Filter by status, priority, and assigned agent
+- ✅ Edit ticket status and priority
+- ✅ Assign tickets to agents
+- ✅ Respond to clients via comments
+- ✅ Close resolved tickets
+- ✅ Edit ticket title and description
+- ✅ Delete tickets
+- ✅ User management (view, edit, delete, change roles)
+
+### Technical Features
+- ✅ Authentication with NextAuth.js
+- ✅ Role-protected routes (CLIENT/AGENT)
+- ✅ Complete RESTful API
+- ✅ Business validations
+- ✅ Error handling with clear messages
+- ✅ Toast notification system
+- ✅ Responsive design with Tailwind CSS 4
+- ✅ TypeScript for type safety
+- ✅ PostgreSQL database with Prisma ORM
+- ✅ Cascade deletes configured
+
+---
+
+## 🛠 Technologies
+
+- **Frontend**: Next.js 16 (App Router with Turbopack), React 19, TypeScript
+- **Styling**: Tailwind CSS 4
 - **Backend**: Next.js API Routes
-- **Base de Datos**: PostgreSQL
+- **Database**: PostgreSQL
 - **ORM**: Prisma
-- **Autenticación**: NextAuth.js v4
-- **Validación**: React Hook Form
-- **Notificaciones**: React Hot Toast
-- **Deployment**: Vercel (recomendado)
+- **Authentication**: NextAuth.js v4
+- **Validation**: React Hook Form
+- **Notifications**: React Hot Toast
+- **Deployment**: Vercel (recommended)
 
 ---
 
-## 📦 Requisitos Previos
+## 📦 Prerequisites
 
-Antes de comenzar, asegúrate de tener instalado:
+Before starting, make sure you have installed:
 
-- **Node.js** 18.x o superior
-- **npm** o **yarn**
-- **PostgreSQL** 14.x o superior
+- **Node.js** 18.x or higher
+- **npm** or **yarn**
+- **PostgreSQL** 14.x or higher
 - **Git**
 
 ---
 
-## 🚀 Instalación
+## 🚀 Installation
 
-### 1. Clonar el Repositorio
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/juanscr24/helpdeskpro.git
 cd helpdeskpro
 ```
 
-### 2. Instalar Dependencias
+### 2. Install Dependencies
 
 ```bash
 npm install
-# o
+# or
 yarn install
 ```
 
-### 3. Configurar Variables de Entorno
+### 3. Configure Environment Variables
 
-Crea un archivo `.env` en la raíz del proyecto:
+Create a `.env` file in the project root:
 
 ```env
 # Database
-DATABASE_URL="postgresql://usuario:contraseña@localhost:5432/helpdeskpro"
+DATABASE_URL="postgresql://user:password@localhost:5432/helpdeskpro"
 
 # NextAuth
-NEXTAUTH_SECRET="tu-secreto-super-seguro-aqui-cambiar-en-produccion"
+NEXTAUTH_SECRET="your-super-secure-secret-change-in-production"
 NEXTAUTH_URL="http://localhost:3000"
 
-# Email (Opcional - para notificaciones futuras)
+# Email (Optional - for future notifications)
 EMAIL_SERVER_HOST="smtp.gmail.com"
 EMAIL_SERVER_PORT=587
-EMAIL_SERVER_USER="tu-email@gmail.com"
-EMAIL_SERVER_PASSWORD="tu-contraseña-de-app"
+EMAIL_SERVER_USER="your-email@gmail.com"
+EMAIL_SERVER_PASSWORD="your-app-password"
 EMAIL_FROM="noreply@helpdeskpro.com"
 ```
 
-### 4. Configurar la Base de Datos
+### 4. Set Up the Database
 
 ```bash
-# Generar cliente de Prisma
+# Generate Prisma client
 npx prisma generate
 
-# Ejecutar migraciones
+# Run migrations
 npx prisma migrate deploy
 
-# (Opcional) Sembrar datos de prueba
+# (Optional) Seed test data
 npx prisma db seed
 ```
 
-### 5. Iniciar el Servidor de Desarrollo
+### 5. Start the Development Server
 
 ```bash
 npm run dev
-# o
+# or
 yarn dev
 ```
 
-La aplicación estará disponible en `http://localhost:3000`
+The application will be available at `http://localhost:3000`
 
 ---
 
-## ⚙️ Configuración
+## ⚙️ Configuration
 
-### Crear Usuario Administrador (Agente)
+### Create Admin User (Agent)
 
-Puedes crear un usuario agente directamente desde la base de datos o mediante Prisma Studio:
+You can create an agent user directly from the database or via Prisma Studio:
 
 ```bash
-# Abre Prisma Studio
+# Open Prisma Studio
 npx prisma studio
 ```
 
-En Prisma Studio:
-1. Ve a la tabla `User`
-2. Crea un nuevo usuario con:
-   - `name`: Nombre del agente
-   - `email`: agente@helpdeskpro.com
-   - `password`: (hash de bcrypt - usa bcrypt online para generar)
+In Prisma Studio:
+1. Go to the `User` table
+2. Create a new user with:
+   - `name`: Agent name
+   - `email`: agent@helpdeskpro.com
+   - `password`: (bcrypt hash - use online bcrypt to generate)
    - `role`: **AGENT**
 
-O usa este script para hashear contraseña con Node.js:
+Or use this script to hash password with Node.js:
 
 ```bash
 node -e "const bcrypt = require('bcryptjs'); console.log(bcrypt.hashSync('password123', 10));"
 ```
 
-### Crear Usuario Cliente
+### Create Client User
 
-Los clientes pueden registrarse directamente desde la página de registro en `/register`.
-
----
-
-## 💻 Uso
-
-### Flujo Cliente
-
-1. **Registro**: Ir a `/register` y crear una cuenta
-2. **Login**: Iniciar sesión en `/login`
-3. **Dashboard**: Ver resumen de tickets en `/client/dashboard`
-4. **Crear Ticket**: Hacer clic en "Crear Nuevo Ticket"
-5. **Ver Tickets**: Navegar a "Mis Tickets" para ver todos
-6. **Detalle**: Hacer clic en un ticket para ver detalle y comentarios
-7. **Comentar**: Agregar comentarios para dar seguimiento
-
-### Flujo Agente
-
-1. **Login**: Iniciar sesión con cuenta de agente en `/login`
-2. **Dashboard**: Ver estadísticas globales en `/agent/dashboard`
-3. **Ver Tickets**: Navegar a "Todos los Tickets"
-4. **Filtrar**: Usar filtros por estado, prioridad, agente
-5. **Gestionar**: Hacer clic en un ticket para editarlo
-6. **Actualizar**: Cambiar estado, prioridad, asignar agente
-7. **Responder**: Agregar comentarios que el cliente verá
-8. **Cerrar**: Marcar como CLOSED cuando esté resuelto
+Clients can register directly from the registration page at `/register`.
 
 ---
 
-## 📁 Estructura del Proyecto
+## 💻 Usage
+
+### Client Flow
+
+1. **Register**: Go to `/register` and create an account
+2. **Login**: Sign in at `/login`
+3. **Dashboard**: View ticket summary at `/client/dashboard`
+4. **Create Ticket**: Click on "Create New Ticket"
+5. **View Tickets**: Navigate to "My Tickets" to see all
+6. **Detail**: Click on a ticket to view details and comments
+7. **Comment**: Add comments to follow up
+
+### Agent Flow
+
+1. **Login**: Sign in with agent account at `/login`
+2. **Dashboard**: View global statistics at `/agent/dashboard`
+3. **View Tickets**: Navigate to "All Tickets"
+4. **Filter**: Use filters by status, priority, agent
+5. **Manage**: Click on a ticket to edit it
+6. **Update**: Change status, priority, assign agent
+7. **Respond**: Add comments that the client will see
+8. **Close**: Mark as CLOSED when resolved
+9. **Edit**: Edit ticket title and description
+10. **Delete**: Delete tickets with confirmation
+11. **User Management**: Manage users, change roles, delete users
+
+---
+
+## 📁 Project Structure
 
 ```
 helpdeskpro/
 ├── prisma/
-│   └── schema.prisma          # Esquema de base de datos
-├── public/                     # Archivos estáticos
+│   └── schema.prisma          # Database schema
+├── public/                     # Static files
 ├── src/
 │   ├── app/
-│   │   ├── (auth)/            # Rutas de autenticación
+│   │   ├── (auth)/            # Authentication routes
 │   │   │   ├── login/
 │   │   │   └── register/
-│   │   ├── agent/             # Rutas de agentes
+│   │   ├── agent/             # Agent routes
 │   │   │   ├── dashboard/
-│   │   │   └── tickets/
-│   │   ├── client/            # Rutas de clientes
+│   │   │   ├── tickets/
+│   │   │   └── users/
+│   │   ├── client/            # Client routes
 │   │   │   ├── dashboard/
 │   │   │   └── tickets/
 │   │   ├── api/               # API Routes
 │   │   │   ├── auth/
 │   │   │   ├── tickets/
 │   │   │   ├── comments/
-│   │   │   └── agents/
+│   │   │   ├── agents/
+│   │   │   └── users/
 │   │   ├── globals.css
 │   │   ├── layout.tsx
-│   │   └── page.tsx
+│   │   └── page.tsx           # Landing page
 │   ├── components/
+│   │   ├── auth/              # Login, Register, Logout
+│   │   ├── common/            # Providers
+│   │   ├── landing/           # Landing page sections
 │   │   ├── layout/            # Header, Sidebar
-│   │   ├── tickets/           # Componentes de tickets
-│   │   ├── ui/                # Componentes reutilizables
-│   │   ├── Providers.tsx
-│   │   └── TicketCard.tsx
+│   │   ├── tickets/           # Ticket components
+│   │   └── ui/                # Reusable components
+│   ├── constants/
+│   │   └── landingContent.ts  # Landing page content
 │   ├── context/
-│   │   └── AuthContext.tsx    # Contexto de autenticación
+│   │   └── AuthContext.tsx    # Authentication context
 │   ├── hooks/
 │   │   ├── useAuth.tsx
 │   │   ├── useLogin.tsx
 │   │   └── useRegister.tsx
 │   ├── lib/
-│   │   ├── db.ts              # Cliente de Prisma
-│   │   └── email.ts           # Funciones de email
+│   │   ├── db.ts              # Prisma client
+│   │   └── email.ts           # Email functions
 │   ├── services/
 │   │   ├── api.ts
 │   │   ├── authService.ts
 │   │   ├── ticketService.ts
 │   │   ├── commentService.ts
-│   │   └── agentService.ts
-│   ├── types/                 # Tipos de TypeScript
-│   └── middleware.ts          # Middleware de rutas
+│   │   ├── agentService.ts
+│   │   └── userService.ts
+│   ├── types/                 # TypeScript types
+│   │   ├── auth.ts
+│   │   ├── ticket.ts
+│   │   ├── components.ts
+│   │   └── index.ts
+│   └── middleware.ts          # Route middleware
 ├── .env.example
 ├── .eslintrc.json
 ├── .gitignore
@@ -300,25 +319,32 @@ helpdeskpro/
 
 ## 🔌 API Endpoints
 
-### Autenticación
-- `POST /api/auth/register` - Registrar nuevo usuario
-- `POST /api/auth/[...nextauth]` - Login con NextAuth
-- `GET /api/auth/me` - Obtener usuario actual
+### Authentication
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/[...nextauth]` - Login with NextAuth
+- `GET /api/auth/me` - Get current user
 
 ### Tickets
-- `GET /api/tickets` - Listar tickets (con filtros)
-- `POST /api/tickets` - Crear ticket (solo clientes)
-- `GET /api/tickets/[id]` - Obtener ticket por ID
-- `PATCH /api/tickets/[id]` - Actualizar ticket (solo agentes)
-- `DELETE /api/tickets/[id]` - Eliminar ticket
-- `PUT /api/tickets/[id]/assign` - Asignar ticket a agente
+- `GET /api/tickets` - List tickets (with filters)
+- `POST /api/tickets` - Create ticket (clients only)
+- `GET /api/tickets/[id]` - Get ticket by ID
+- `PATCH /api/tickets/[id]` - Update ticket (agents only)
+- `DELETE /api/tickets/[id]` - Delete ticket
+- `PUT /api/tickets/[id]/assign` - Assign ticket to agent
 
-### Comentarios
-- `GET /api/comments/[ticketId]` - Listar comentarios de un ticket
-- `POST /api/comments` - Crear comentario
+### Comments
+- `GET /api/comments/[ticketId]` - List comments for a ticket
+- `POST /api/comments` - Create comment
 
-### Agentes
-- `GET /api/agents` - Listar todos los agentes
+### Agents
+- `GET /api/agents` - List all agents
+
+### Users
+- `GET /api/users` - List all users (agents only)
+- `GET /api/users/[id]` - Get user by ID
+- `PUT /api/users/[id]` - Update user
+- `DELETE /api/users/[id]` - Delete user
+- `PATCH /api/users/[id]` - Change user role
 
 ---
 
@@ -396,7 +422,4 @@ Este proyecto fue desarrollado como parte de un ejercicio académico para Cohort
 Si tienes alguna pregunta o problema, por favor contacta a:
 - **Email**: juanscr24@gmail.com
 - **GitHub Issues**: [Crear Issue](https://github.com/juanscr24/helpdeskpro/issues)
-
 ---
-
-**Desarrollado con ❤️ por Juan Sebastian Cardona Rodriguez - Cohorte 3**
