@@ -14,7 +14,6 @@ export const FeaturesSection = () => {
           {MAIN_FEATURES.map((feature, index) => (
             <FeatureCard
               key={index}
-              icon={feature.icon}
               title={feature.title}
               description={feature.description}
             />

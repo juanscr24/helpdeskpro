@@ -26,22 +26,18 @@ export const SOLUTIONS = [
 
 export const MAIN_FEATURES = [
   {
-    icon: '📋',
     title: 'Gestión Centralizada',
     description: 'Todos los tickets en un único lugar. Crea, edita y actualiza tickets con campos: Título, Descripción, Prioridad y Estado.',
   },
   {
-    icon: '👥',
     title: 'Roles y Permisos',
     description: 'Dos tipos de usuarios. Clientes reportan problemas, Agentes resuelven. Cada uno con permisos personalizados según su rol.',
   },
   {
-    icon: '💬',
     title: 'Comunicación Clara',
     description: 'Hilo de comentarios por ticket. Conversación centralizada entre cliente y agente. Historial completo sin correos sueltos.',
   },
   {
-    icon: '🤖',
     title: 'Automatización',
     description: 'Emails automáticos en eventos clave: creación de ticket, respuesta de agente, cierre de ticket. Recordatorios de tickets sin respuesta.',
   },
