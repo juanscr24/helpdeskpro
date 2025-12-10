@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { Card } from '@src/components/ui/Card';
 import { TicketCard } from '@src/components/tickets';
 import { Button } from '@src/components/ui/Button';
@@ -64,20 +65,21 @@ export default function AgentDashboardPage() {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar role="agent" currentPath="/agent/dashboard" />
 
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         <Header userName={user?.name || 'Agente'} userEmail={user?.email || ''} />
 
-        <main className="p-8">
+        <PageTransition>
+          <main className="p-4 sm:p-6 lg:p-8">
           {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
               Panel de Agente
             </h1>
-            <p className="text-gray-600">Gestiona y da seguimiento a los tickets de soporte</p>
+            <p className="text-sm sm:text-base text-gray-600">Gestiona y da seguimiento a los tickets de soporte</p>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-8">
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Total Tickets</p>
@@ -124,9 +126,9 @@ export default function AgentDashboardPage() {
           </div>
 
           {/* Quick Actions */}
-          <div className="mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Acciones Rápidas</h2>
-            <div className="flex gap-4">
+          <div className="mb-6 lg:mb-8">
+            <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">Acciones Rápidas</h2>
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Link href="/agent/tickets">
                 <Button variant="primary" size="lg">
                   Ver Todos los Tickets
@@ -148,7 +150,7 @@ export default function AgentDashboardPage() {
           {/* Urgent Tickets */}
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-2xl font-bold text-gray-900">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900">
                 Tickets Urgentes {urgentTickets.length > 0 && `(${urgentTickets.length})`}
               </h2>
               <Link href="/agent/tickets?priority=HIGH">
@@ -172,7 +174,8 @@ export default function AgentDashboardPage() {
               </Card>
             )}
           </div>
-        </main>
+          </main>
+        </PageTransition>
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ export const LoginForm = () => {
   const { register, onSubmit, errors, error, isLoading } = useLogin();
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-4 w-90 max-md:w-80">
       {error && (
         <div className="p-3 mb-4 text-sm rounded-lg bg-red-50 text-red-800 border border-red-200 flex items-center gap-2">
           <svg className="w-5 h-5 shrink-0" fill="currentColor" viewBox="0 0 20 20">

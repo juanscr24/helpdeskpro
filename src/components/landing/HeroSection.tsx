@@ -14,13 +14,8 @@ export const HeroSection = () => {
             </p>
             <div className="flex gap-4">
               <Link href="/register">
-                <Button className="bg-accent-500 hover:bg-accent-600 text-white">
+                <Button variant='primary' className="bg-accent-500 hover:bg-accent-600 text-white">
                   Comenzar Gratis
-                </Button>
-              </Link>
-              <Link href="/login">
-                <Button className="bg-white text-primary-900 hover:bg-gray-100">
-                  Iniciar Sesión
                 </Button>
               </Link>
             </div>
