@@ -2,6 +2,7 @@
 
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { TicketForm } from '@src/components/tickets/TicketForm';
 import { Card } from '@src/components/ui/Card';
 import { useAuth } from '@src/hooks/useAuth';
@@ -26,15 +27,16 @@ export default function CreateClientTicketPage() {
       <Sidebar role="client" currentPath="/client/tickets" />
 
       {/* Main Content */}
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         {/* Header */}
         <Header userName={user?.name || 'Usuario'} userEmail={user?.email || ''} />
 
-        {/* Content */}
-        <main className="p-8 max-w-2xl">
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900">Crear Nuevo Ticket</h1>
-            <p className="text-gray-600 mt-2">
+        <PageTransition>
+          {/* Content */}
+          <main className="p-4 sm:p-6 lg:p-8 max-w-2xl mx-auto">
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Crear Nuevo Ticket</h1>
+            <p className="text-sm sm:text-base text-gray-600 mt-2">
               Describe tu problema o solicitud de soporte y nuestro equipo te ayudará lo antes posible.
             </p>
           </div>
@@ -42,7 +44,8 @@ export default function CreateClientTicketPage() {
           <Card>
             <TicketForm />
           </Card>
-        </main>
+          </main>
+        </PageTransition>
       </div>
     </div>
   );

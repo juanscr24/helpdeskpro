@@ -8,7 +8,7 @@ export const RegisterForm = () => {
   const { register, onSubmit, errors } = useRegister();
 
   return (
-    <form onSubmit={onSubmit} className="space-y-4">
+    <form onSubmit={onSubmit} className="space-y-4 w-90 max-md:w-80">
       <Input
         type="text"
         label="Nombre Completo"

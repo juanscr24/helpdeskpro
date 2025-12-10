@@ -3,6 +3,7 @@
 import { use, useState, useEffect } from 'react';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { Card } from '@src/components/ui/Card';
 import { Badge } from '@src/components/ui/Badge';
 import { Button } from '@src/components/ui/Button';
@@ -102,12 +103,13 @@ export default function ClientTicketDetailPage({ params }: { params: Promise<{ i
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar role="client" currentPath="/client/tickets" />
 
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         <Header userName={user?.name || 'Usuario'} userEmail={user?.email || ''} />
 
-        <main className="p-8 max-w-4xl">
+        <PageTransition>
+          <main className="p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto">
           {/* Back Button */}
-          <Button variant="ghost" size="sm" onClick={() => router.back()} className="mb-6">
+          <Button variant="ghost" size="sm" onClick={() => router.back()} className="mb-4 sm:mb-6">
             ← Volver a tickets
           </Button>
 
@@ -116,7 +118,7 @@ export default function ClientTicketDetailPage({ params }: { params: Promise<{ i
             <div className="space-y-6">
               {/* Header */}
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 mb-4">{ticket.title}</h1>
+                <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-4">{ticket.title}</h1>
                 <div className="flex flex-wrap gap-2">
                   <Badge variant={statusConfig[ticket.status].variant}>
                     {statusConfig[ticket.status].label}
@@ -134,7 +136,7 @@ export default function ClientTicketDetailPage({ params }: { params: Promise<{ i
               </div>
 
               {/* Metadata */}
-              <div className="border-t border-gray-200 pt-4 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+              <div className="border-t border-gray-200 pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                 <div>
                   <span className="text-gray-600">Creado por:</span>
                   <p className="font-semibold text-gray-900">{ticket.createdBy.name}</p>
@@ -250,7 +252,8 @@ export default function ClientTicketDetailPage({ params }: { params: Promise<{ i
               </Card>
             )}
           </div>
-        </main>
+          </main>
+        </PageTransition>
       </div>
     </div>
   );

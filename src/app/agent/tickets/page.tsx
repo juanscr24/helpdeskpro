@@ -4,6 +4,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { TicketCard } from '@src/components/tickets';
 import { Button } from '@src/components/ui/Button';
 import { Select } from '@src/components/ui/Select';
@@ -121,22 +122,23 @@ function AgentTicketsContent() {
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar role="agent" currentPath="/agent/tickets" />
 
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         <Header userName={user?.name || 'Agente'} userEmail={user?.email || ''} />
 
-        <main className="p-8">
+        <PageTransition>
+          <main className="p-4 sm:p-6 lg:p-8">
           {/* Title */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900">Gestión de Tickets</h1>
-            <p className="text-gray-600 mt-1">
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Gestión de Tickets</h1>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">
               Administra todos los tickets del sistema ({filteredTickets.length} total)
             </p>
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-lg border border-purple-200 p-6 mb-8">
-            <h2 className="text-lg font-semibold text-gray-900 mb-4">Filtros</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="bg-white rounded-lg border border-purple-200 p-4 sm:p-6 mb-6 lg:mb-8">
+            <h2 className="text-base sm:text-lg font-semibold text-gray-900 mb-4">Filtros</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               <Input
                 label="Buscar"
                 type="text"
@@ -186,23 +188,24 @@ function AgentTicketsContent() {
 
           {/* Tickets Grid */}
           {filteredTickets.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               {filteredTickets.map((ticket) => (
                 <TicketCard key={ticket.id} ticket={ticket} role="agent" />
               ))}
             </div>
           ) : (
-            <div className="bg-white rounded-lg border border-gray-200 p-12 text-center">
-              <div className="text-6xl mb-4">🔍</div>
-              <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <div className="bg-white rounded-lg border border-gray-200 p-6 sm:p-12 text-center">
+              <div className="text-4xl sm:text-6xl mb-4">🔍</div>
+              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-2">
                 No se encontraron tickets
               </h3>
-              <p className="text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600">
                 Intenta ajustar los filtros para ver más resultados
               </p>
             </div>
           )}
-        </main>
+          </main>
+        </PageTransition>
       </div>
     </div>
   );

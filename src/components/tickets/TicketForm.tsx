@@ -127,19 +127,19 @@ export const TicketForm = ({ onSuccess }: TicketFormProps) => {
         disabled={isLoading}
       />
 
-      <div className="flex gap-4 pt-4">
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
         <Button
           type="submit"
           variant="primary"
           disabled={isLoading}
-          className="flex-1"
+          className="flex-1 w-full sm:w-auto"
         >
           {isLoading ? 'Creando...' : 'Crear Ticket'}
         </Button>
         <Button 
           type="button" 
           variant="secondary" 
-          className="flex-1"
+          className="flex-1 w-full sm:w-auto"
           onClick={handleReset}
           disabled={isLoading}
         >

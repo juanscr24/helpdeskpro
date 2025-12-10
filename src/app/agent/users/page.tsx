@@ -5,6 +5,7 @@ import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { Card } from '@src/components/ui/Card';
 import { Button } from '@src/components/ui/Button';
 import { Badge } from '@src/components/ui/Badge';
@@ -114,12 +115,12 @@ export default function UsersManagementPage() {
         return (
             <div className="flex min-h-screen bg-gray-50">
                 <Sidebar role="agent" currentPath="/agent/users" />
-                <div className="flex-1 ml-64">
+                <div className="flex-1 lg:ml-64">
                     <Header 
                         userName={session?.user?.name || 'Agente'} 
                         userEmail={session?.user?.email || ''} 
                     />
-                    <main className="p-8">
+                    <main className="p-4 sm:p-6 lg:p-8">
                         <div className="flex items-center justify-center min-h-[60vh]">
                             <div className="text-center">
                                 <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-900 mx-auto mb-4"></div>
@@ -138,21 +139,22 @@ export default function UsersManagementPage() {
     return (
         <div className="flex min-h-screen bg-gray-50">
             <Sidebar role="agent" currentPath="/agent/users" />
-            <div className="flex-1 ml-64">
+            <div className="flex-1 lg:ml-64">
                 <Header 
                     userName={session?.user?.name || 'Agente'} 
                     userEmail={session?.user?.email || ''} 
                 />
-                <main className="p-8">
-                    <div className="max-w-7xl mx-auto">
+                <PageTransition>
+                    <main className="p-4 sm:p-6 lg:p-8">
+                        <div className="max-w-7xl mx-auto">
                         {/* Header */}
-                        <div className="mb-8">
-                            <h1 className="text-3xl font-bold text-gray-900 mb-2">Gestión de Usuarios</h1>
+                        <div className="mb-6 lg:mb-8">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Gestión de Usuarios</h1>
                             <p className="text-gray-600">Administra todos los usuarios del sistema</p>
                         </div>
 
                         {/* Stats */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 lg:mb-8">
                             <Card>
                                 <div className="flex items-center gap-4">
                                     <div className="p-3 bg-primary-100 rounded-lg">
@@ -190,101 +192,175 @@ export default function UsersManagementPage() {
                             </Card>
                         </div>
 
-                        {/* Users Table */}
-                        <Card>
-                            <div className="overflow-x-auto">
-                                <table className="w-full">
-                                    <thead className="bg-gray-50 border-b border-gray-200">
-                                        <tr>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Usuario
-                                            </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Email
-                                            </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Rol
-                                            </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Tickets Creados
-                                            </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Tickets Asignados
-                                            </th>
-                                            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Registrado
-                                            </th>
-                                            <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                                Acciones
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody className="bg-white divide-y divide-gray-200">
-                                        {users.map((user) => (
-                                            <tr key={user.id} className="hover:bg-gray-50">
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="flex items-center">
-                                                        <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
-                                                            <span className="text-primary-900 font-semibold">
-                                                                {user.name.charAt(0).toUpperCase()}
-                                                            </span>
-                                                        </div>
-                                                        <div className="ml-4">
-                                                            <div className="text-sm font-medium text-gray-900">{user.name}</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <div className="text-sm text-gray-900">{user.email}</div>
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap">
-                                                    <Badge variant={user.role === 'AGENT' ? 'in_progress' : 'open'}>
-                                                        {user.role === 'AGENT' ? 'Agente' : 'Cliente'}
-                                                    </Badge>
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {user._count?.ticketsCreated || 0}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {user._count?.ticketsAssigned || 0}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    {new Date(user.createdAt).toLocaleDateString('es-ES')}
-                                                </td>
-                                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                                    <div className="flex justify-end gap-2">
-                                                        <button
-                                                            className="p-2 text-gray-600 hover:text-primary-900 hover:bg-primary-50 rounded transition-colors"
-                                                            onClick={() => handleRoleClick(user)}
-                                                            title="Cambiar rol"
-                                                        >
-                                                            <Shield className="w-4 h-4" />
-                                                        </button>
-                                                        <button
-                                                            className="p-2 text-gray-600 hover:text-primary-900 hover:bg-primary-50 rounded transition-colors"
-                                                            onClick={() => handleEditClick(user)}
-                                                            title="Editar"
-                                                        >
-                                                            <Edit className="w-4 h-4" />
-                                                        </button>
-                                                        <button
-                                                            className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                                                            onClick={() => handleDeleteClick(user)}
-                                                            disabled={user.id === session?.user?.id}
-                                                            title="Eliminar"
-                                                        >
-                                                            <Trash2 className="w-4 h-4" />
-                                                        </button>
-                                                    </div>
-                                                </td>
+                        {/* Users Table - Desktop */}
+                        <div className="hidden lg:block">
+                            <Card>
+                                <div className="overflow-x-auto">
+                                    <table className="w-full">
+                                        <thead className="bg-gray-50 border-b border-gray-200">
+                                            <tr>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Usuario
+                                                </th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Email
+                                                </th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Rol
+                                                </th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Tickets Creados
+                                                </th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Tickets Asignados
+                                                </th>
+                                                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Registrado
+                                                </th>
+                                                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                                    Acciones
+                                                </th>
                                             </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </Card>
-                    </div>
-                </main>
+                                        </thead>
+                                        <tbody className="bg-white divide-y divide-gray-200">
+                                            {users.map((user) => (
+                                                <tr key={user.id} className="hover:bg-gray-50">
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        <div className="flex items-center">
+                                                            <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center">
+                                                                <span className="text-primary-900 font-semibold">
+                                                                    {user.name.charAt(0).toUpperCase()}
+                                                                </span>
+                                                            </div>
+                                                            <div className="ml-4">
+                                                                <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        <div className="text-sm text-gray-900">{user.email}</div>
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap">
+                                                        <Badge variant={user.role === 'AGENT' ? 'in_progress' : 'open'}>
+                                                            {user.role === 'AGENT' ? 'Agente' : 'Cliente'}
+                                                        </Badge>
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {user._count?.ticketsCreated || 0}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {user._count?.ticketsAssigned || 0}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                        {new Date(user.createdAt).toLocaleDateString('es-ES')}
+                                                    </td>
+                                                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                        <div className="flex justify-end gap-2">
+                                                            <button
+                                                                className="p-2 text-gray-600 hover:text-primary-900 hover:bg-primary-50 rounded transition-colors"
+                                                                onClick={() => handleRoleClick(user)}
+                                                                title="Cambiar rol"
+                                                            >
+                                                                <Shield className="w-4 h-4" />
+                                                            </button>
+                                                            <button
+                                                                className="p-2 text-gray-600 hover:text-primary-900 hover:bg-primary-50 rounded transition-colors"
+                                                                onClick={() => handleEditClick(user)}
+                                                                title="Editar"
+                                                            >
+                                                                <Edit className="w-4 h-4" />
+                                                            </button>
+                                                            <button
+                                                                className="p-2 text-red-600 hover:text-red-700 hover:bg-red-50 rounded transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                                                                onClick={() => handleDeleteClick(user)}
+                                                                disabled={user.id === session?.user?.id}
+                                                                title="Eliminar"
+                                                            >
+                                                                <Trash2 className="w-4 h-4" />
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            ))}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </Card>
+                        </div>
+
+                        {/* Users Cards - Mobile */}
+                        <div className="lg:hidden space-y-4">
+                            {users.map((user) => (
+                                <Card key={user.id}>
+                                    <div className="space-y-4">
+                                        {/* Header */}
+                                        <div className="flex items-start justify-between">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-12 h-12 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                                                    <span className="text-primary-900 font-semibold text-lg">
+                                                        {user.name.charAt(0).toUpperCase()}
+                                                    </span>
+                                                </div>
+                                                <div className="min-w-0">
+                                                    <h3 className="text-base font-semibold text-gray-900 truncate">{user.name}</h3>
+                                                    <p className="text-sm text-gray-600 truncate">{user.email}</p>
+                                                </div>
+                                            </div>
+                                            <Badge variant={user.role === 'AGENT' ? 'in_progress' : 'open'}>
+                                                {user.role === 'AGENT' ? 'Agente' : 'Cliente'}
+                                            </Badge>
+                                        </div>
+
+                                        {/* Stats */}
+                                        <div className="grid grid-cols-3 gap-3 text-center border-t border-gray-200 pt-3">
+                                            <div>
+                                                <p className="text-xs text-gray-500 mb-1">Creados</p>
+                                                <p className="text-lg font-semibold text-gray-900">{user._count?.ticketsCreated || 0}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-gray-500 mb-1">Asignados</p>
+                                                <p className="text-lg font-semibold text-gray-900">{user._count?.ticketsAssigned || 0}</p>
+                                            </div>
+                                            <div>
+                                                <p className="text-xs text-gray-500 mb-1">Registrado</p>
+                                                <p className="text-xs font-medium text-gray-900">
+                                                    {new Date(user.createdAt).toLocaleDateString('es-ES', { day: '2-digit', month: 'short' })}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Actions */}
+                                        <div className="flex gap-2 pt-3 border-t border-gray-200">
+                                            <button
+                                                className="flex-1 px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors flex items-center justify-center gap-2"
+                                                onClick={() => handleRoleClick(user)}
+                                            >
+                                                <Shield className="w-4 h-4" />
+                                                Rol
+                                            </button>
+                                            <button
+                                                className="flex-1 px-3 py-2 text-sm font-medium text-gray-700 bg-gray-100 hover:bg-gray-200 rounded-lg transition-colors flex items-center justify-center gap-2"
+                                                onClick={() => handleEditClick(user)}
+                                            >
+                                                <Edit className="w-4 h-4" />
+                                                Editar
+                                            </button>
+                                            <button
+                                                className="flex-1 px-3 py-2 text-sm font-medium text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                                onClick={() => handleDeleteClick(user)}
+                                                disabled={user.id === session?.user?.id}
+                                            >
+                                                <Trash2 className="w-4 h-4" />
+                                                Eliminar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </Card>
+                            ))}
+                        </div>
+                        </div>
+                    </main>
+                </PageTransition>
             </div>
 
             {/* Delete Modal */}

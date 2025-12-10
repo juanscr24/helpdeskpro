@@ -3,6 +3,7 @@
 import { use, useState, useEffect } from 'react';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { Card } from '@src/components/ui/Card';
 import { Badge } from '@src/components/ui/Badge';
 import { Button } from '@src/components/ui/Button';
@@ -211,38 +212,41 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
     <div className="flex min-h-screen bg-gray-50">
       <Sidebar role="agent" currentPath="/agent/tickets" />
 
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         <Header userName={user?.name || 'Agente'} userEmail={user?.email || ''} />
 
-        <main className="p-8 max-w-6xl">
+        <PageTransition>
+          <main className="p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
           {/* Back Button and Action Buttons */}
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 sm:mb-6 gap-3">
             <Button variant="ghost" size="sm" onClick={() => router.back()}>
               ← Volver a tickets
             </Button>
-            <div className="flex gap-3">
+            <div className="flex gap-2 sm:gap-3">
               <Button
                 variant="secondary"
                 size="sm"
                 onClick={() => setIsEditModalOpen(true)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 flex-1 sm:flex-initial"
               >
                 <Edit2 size={16} />
-                Editar Ticket
+                <span className="hidden sm:inline">Editar Ticket</span>
+                <span className="sm:hidden">Editar</span>
               </Button>
               <Button
                 variant="danger"
                 size="sm"
                 onClick={() => setIsDeleteModalOpen(true)}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 flex-1 sm:flex-initial"
               >
                 <Trash2 size={16} />
-                Eliminar Ticket
+                <span className="hidden sm:inline">Eliminar Ticket</span>
+                <span className="sm:hidden">Eliminar</span>
               </Button>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {/* Main Content - 2/3 */}
             <div className="lg:col-span-2 space-y-8">
               {/* Ticket Detail Card */}
@@ -414,6 +418,7 @@ export default function AgentTicketDetailPage({ params }: { params: Promise<{ id
             </div>
           </div>
         </main>
+        </PageTransition>
       </div>
 
       {/* Edit Ticket Modal */}

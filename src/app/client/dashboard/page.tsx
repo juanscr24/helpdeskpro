@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Header } from '@src/components/layout/Header';
 import { Sidebar } from '@src/components/layout/Sidebar';
+import { PageTransition } from '@src/components/common';
 import { Card } from '@src/components/ui/Card';
 import { Button } from '@src/components/ui/Button';
 import { TicketCard } from '@src/components/tickets';
@@ -62,22 +63,23 @@ export default function ClientDashboardPage() {
       <Sidebar role="client" currentPath="/client/dashboard" />
 
       {/* Main Content */}
-      <div className="flex-1 ml-64">
+      <div className="flex-1 lg:ml-64">
         {/* Header */}
         <Header userName={user?.name || 'Usuario'} userEmail={user?.email || ''} />
 
-        {/* Content */}
-        <main className="p-8">
+        <PageTransition>
+          {/* Content */}
+          <main className="p-4 sm:p-6 lg:p-8">
           {/* Welcome Section */}
-          <div className="mb-8">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <div className="mb-6 lg:mb-8">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
               Bienvenido, {user?.name || 'Usuario'}
             </h1>
-            <p className="text-gray-600">Aquí está un resumen de tus tickets</p>
+            <p className="text-sm sm:text-base text-gray-600">Aquí está un resumen de tus tickets</p>
           </div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 mb-6 lg:mb-8">
             <Card>
               <div className="text-center">
                 <p className="text-gray-600 text-sm mb-2">Tickets Abiertos</p>
@@ -159,7 +161,8 @@ export default function ClientDashboardPage() {
               </Card>
             )}
           </div>
-        </main>
+          </main>
+        </PageTransition>
       </div>
     </div>
   );
