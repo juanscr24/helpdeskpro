@@ -1,10 +1,6 @@
 ## 👨‍💻 Developer Information
 
-**Name**: Juan Cardona  
-**Clan**: Macondo  
-**Email**: juanscr24@gmail.com  
-**ID**: 1140897309  
-**GitHub**: [@juanscr24](https://github.com/juanscr24)  
+**Name**: Juan Cardona   
 **LinkedIn**: [Juan Cardona](https://www.linkedin.com/in/juanscr24/)
 
 ---
